@@ -34,16 +34,16 @@ public class MyAction {
 
   public static JsonObject main(JsonObject args) {
     JsonObject response = new JsonObject();
-    
+
     long javaMemory = Runtime.getRuntime().maxMemory();
     LOGGER.info("Java Memory: " + javaMemory);
     String cgroupsMemory = "";
     try {
-      BufferedReader br = new BufferedReader(new FileReader("/sys/fs/cgroup/memory/memory.memsw.limit_in_bytes"));
+      BufferedReader br = new BufferedReader(new FileReader("/sys/fs/cgroup/memory/memory.limit_in_bytes"));
       cgroupsMemory= br.readLine();
       LOGGER.info("cGroups Memory: " + cgroupsMemory);
     } catch (IOException ie) {
-      LOGGER.entry(ie);
+      LOGGER.error(ie);
     }
     String javaVersion = System.getProperty("java.version");
     response.addProperty("JavaMemory", javaMemory);
