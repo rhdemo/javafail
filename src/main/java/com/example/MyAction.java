@@ -45,10 +45,10 @@ public class MyAction {
     } catch (IOException ie) {
       LOGGER.entry(ie);
     }
-    
+    String javaVersion = System.getProperty("java.version");
     response.addProperty("JavaMemory", javaMemory);
     response.addProperty("cgroupsMemory", cgroupsMemory);
-    
+    response.addProperty("JavaVersion", javaVersion);
     
     
     return response;
